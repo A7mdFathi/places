@@ -16,12 +16,15 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final _titleController = TextEditingController();
   File _pickedImage;
 
+  void _selectImage(File pickedImage){
+    _pickedImage=pickedImage;
+  }
   void _savedPlace() {
     if (_titleController.text.isEmpty || _pickedImage == null) {
       return;
     }
 
-    Provider.of<GreatPLaces>(context, listen: false).addPlace(
+    Provider.of<GreatPlaces>(context, listen: false).addPlace(
       _titleController.text.toString(),
       _pickedImage,
     );
@@ -50,7 +53,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       controller: _titleController,
                     ),
                     SizedBox(height: 10),
-                    ImageInput(_pickedImage)
+                    ImageInput(_selectImage),
                   ],
                 ),
               ),

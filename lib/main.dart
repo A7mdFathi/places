@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
-      value: GreatPLaces(),
+      value: GreatPlaces(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
