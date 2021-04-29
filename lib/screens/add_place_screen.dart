@@ -16,9 +16,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final _titleController = TextEditingController();
   File _pickedImage;
 
-  void _selectImage(File pickedImage){
-    _pickedImage=pickedImage;
+  void _selectImage(File pickedImage) {
+    _pickedImage = pickedImage;
   }
+
   void _savedPlace() {
     if (_titleController.text.isEmpty || _pickedImage == null) {
       return;
