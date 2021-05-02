@@ -1,10 +1,11 @@
+import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:places/providers/great_places.dart';
 import 'package:places/screens/add_place_screen.dart';
 import 'package:provider/provider.dart';
 
-class PLacesListScreen extends StatelessWidget {
+class PlaceListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,29 +23,30 @@ class PLacesListScreen extends StatelessWidget {
       body: FutureBuilder(
         future: Provider.of<GreatPlaces>(context, listen: false)
             .fetchAndSetPlaces(),
-        builder: (context, snapshot) =>
-            snapshot.connectionState == ConnectionState.waiting
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : Consumer<GreatPlaces>(
-                    builder: (context, places, ch) => places.items.length <= 0
-                        ? ch
-                        : ListView.builder(
-                            itemBuilder: (context, index) => ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage:
-                                    FileImage(places.items[index].image),
-                              ),
-                              title: Text(places.items[index].title),
-                              onTap: null,
-                            ),
-                            itemCount: places.items.length,
+        builder: (context, snapshot) => snapshot.connectionState ==
+                ConnectionState.waiting
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Consumer<GreatPlaces>(
+                builder: (context, places, ch) => places.items.length <= 0
+                    ? ch
+                    : ListView.builder(
+                        itemBuilder: (context, index) => ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage:
+                                FileImage(places.items[index].image),
                           ),
-                    child: Center(
-                      child: const Text('There are no places'),
-                    ),
-                  ),
+                          title: Text(places.items[index].title),
+                          subtitle: Text(places.items[index].location.address),
+                          onTap: null,
+                        ),
+                        itemCount: places.items.length,
+                      ),
+                child: Center(
+                  child: const Text('There are no places'),
+                ),
+              ),
       ),
     );
   }

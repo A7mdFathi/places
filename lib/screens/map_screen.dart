@@ -20,6 +20,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   LatLng _pickedLocation;
+
   void _selectLocation(LatLng position) {
     _pickedLocation = position;
   }
