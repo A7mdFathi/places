@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:places/providers/great_places.dart';
 import 'package:places/screens/add_place_screen.dart';
+import 'package:places/screens/place_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class PlaceListScreen extends StatelessWidget {
@@ -39,7 +40,11 @@ class PlaceListScreen extends StatelessWidget {
                           ),
                           title: Text(places.items[index].title),
                           subtitle: Text(places.items[index].location.address),
-                          onTap: null,
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                PlaceDetailScreen.routeName,
+                                arguments: places.items[index].id);
+                          },
                         ),
                         itemCount: places.items.length,
                       ),
