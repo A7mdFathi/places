@@ -1,11 +1,9 @@
-import 'dart:io';
-
-import 'package:places/models/place.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:path/path.dart' as path;
+import 'package:sqflite/sqlite_api.dart';
 
 class DBHelper {
-  static Future<sql.Database> database() async {
+  static Future<Database> database() async {
     final dbPath = await sql.getDatabasesPath();
 
     return sql.openDatabase(path.join(dbPath, 'places.db'),
@@ -20,7 +18,7 @@ class DBHelper {
     db.insert(
       table,
       data,
-      conflictAlgorithm: sql.ConflictAlgorithm.replace,
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
